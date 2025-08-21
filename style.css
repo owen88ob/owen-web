@@ -1,0 +1,209 @@
+/* 全局样式和字体导入 */
+:root {
+    --primary-color: #ffffff;
+    --secondary-color: #a7a7a7;
+    --bg-color-dark: #12121b;
+    --bg-color-light: #1c1c2b;
+    --accent-color: #00aaff;
+    --game-bg: #2a2a3e;
+    --snake-head: #4dff88;
+    --snake-body: #33cc66;
+    --food-color: #ff4d4d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', 'Helvetica Neue', 'Arial', 'sans-serif';
+    background-color: var(--bg-color-dark);
+    color: var(--primary-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Section 1: 英雄/开头区域 */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 0 20px;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero-content {
+    z-index: 1;
+}
+
+.main-title {
+    font-size: clamp(2.5rem, 10vw, 6rem); /* 响应式字体大小 */
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    animation: fadeInDown 1.5s ease-out;
+}
+
+.subtitle {
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    font-weight: 300;
+    color: var(--primary-color);
+    margin-top: 1rem;
+    opacity: 0.9;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    animation: fadeInUp 1.5s ease-out 0.5s;
+    animation-fill-mode: both; /* 保持动画结束状态 */
+}
+
+/* 向下滚动指示器 */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator span {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-bottom: 3px solid white;
+    border-right: 3px solid white;
+    transform: rotate(45deg);
+}
+
+/* Section 2: 游戏区域 */
+#game-section {
+    min-height: 100vh;
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-color-dark);
+}
+
+.game-container {
+    text-align: center;
+    background-color: var(--bg-color-light);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 500px;
+}
+
+.game-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+
+.game-display {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+#gameCanvas {
+    background-color: var(--game-bg);
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+}
+
+#gameOverScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+#gameOverScreen.hidden {
+    display: none;
+    opacity: 0;
+}
+
+#gameOverScreen.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding: 0 10px;
+}
+
+.score-board {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+#startButton {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#startButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+}
+
+.instructions {
+    margin-top: 1.5rem;
+    color: var(--secondary-color);
+}
+
+/* 动画效果 */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 0.9; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+    40% { transform: translate(-50%, -15px); }
+    60% { transform: translate(-50%, -7px); }
+}

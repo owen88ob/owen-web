@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owen's First Web</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Section 1: 华丽的开头 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="main-title">Owen's First Web</h1>
+            <p class="subtitle">向下滚动，开始一场复古游戏之旅</p>
+            <div class="scroll-indicator">
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: 贪吃蛇游戏 -->
+    <section id="game-section">
+        <div class="game-container">
+            <h2>经典贪吃蛇</h2>
+            <div class="game-display">
+                <canvas id="gameCanvas" width="400" height="400"></canvas>
+                <div id="gameOverScreen" class="hidden">
+                    <h2>游戏结束</h2>
+                    <p>你的分数: <span id="finalScore">0</span></p>
+                </div>
+            </div>
+            <div class="game-controls">
+                <div class="score-board">得分: <span id="score">0</span></div>
+                <button id="startButton">开始游戏</button>
+            </div>
+            <p class="instructions">使用键盘方向键 (w s a d) 控制方向</p>
+        </div>
+    </section>
+
+    <script src="game.js"></script>
+</body>
+</html>
